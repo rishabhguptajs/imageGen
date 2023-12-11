@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
@@ -17,16 +16,21 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const generateImage = () => {
+    
+  }
+
   const handleSubmit = () => {
 
   }
 
   const handleChange = (e) => {
-
+    setForm({...form, [e.target.name]: e.target.value })
   }
 
   const handleSurpriseMe = () => {
-
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt })
   }
 
   return (
@@ -53,7 +57,7 @@ const CreatePost = () => {
           <FormField 
             labelName='Prompt'
             type='text'
-            name='Prompt'
+            name='prompt'
             placeholder='a fortune-telling shiba inu reading your fate in a giant hamburger, digital art'
             value={form.prompt}
             handleChange={handleChange}
@@ -81,6 +85,27 @@ const CreatePost = () => {
               </div>
             )}
           </div>
+        </div>
+        <div className='mt-5 flex gap-5'>
+              <button
+                type='button'
+                onClick={generateImage}
+                className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+              >
+                {generatingImg? 'Generating...' : 'Generate Image'}
+              </button>
+        </div>
+
+        <div className='mt-10'>
+              <p className='mt-2 text-[#666e75] text-[14px]'>
+              Once your image is created, you can share it with others in the community.
+              </p>
+              <button
+                type='submit'
+                className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center' 
+              >
+                {loading? 'Sharing...' : 'Share with others'}
+              </button>
         </div>
       </form>
     </section>
