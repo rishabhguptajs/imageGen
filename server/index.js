@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/v1/post', postRoutes)
-app.use('/api/v1/dalle', dalle)
+app.use('/api/v1/dalle', dalleRoutes)
 
 app.get('/', (req, res) => {
     res.send("Hello from Remagine")

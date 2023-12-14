@@ -5,5 +5,3 @@ import { OpenAI } from "openai";
 dotenv.config();
 
 const router = express.Router();
-
-export default dalleRoutes;
